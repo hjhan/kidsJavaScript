@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<!-- <style>
+	  table {
+	    border: 1px dashed red;
+	  }
+	  td  {
+	    border: 1px dashed blue;
+	    padding: 10px;
+	  }
+	</style> -->
+</head>
+<body>
+
+<script type="text/javascript">
+	
+
+const students = [
+	['贾墨', 10,'images/male.jpg','编程A，英语','解决复杂数学问题，可以编游戏'],
+	['孙叶（可可）',11,'images/female.jpg','编程A，英语','多一种语言，可以找个好工作'],
+	['杜郑杰',10,'images/male.jpg','编程B,英语','编游戏'],
+	['焦晨',10,'images/male.jpg','编程B，英语','网上购物，无人驾驶'],
+	['张景晖',10,'images/male.jpg','编程B，英语','找个好收入的工作，成立公司'],
+	['华沈倾',10,'images/female.jpg','编程B，英语','拓展思维，增强英语能力'],
+];
+
+
+const headers = ['姓名','年龄','性别','班级','学习理想'];
+
+function makeTableHTML(headers,objectArrays) {	
+	let result = "<table border=1>";
+		
+	result += "<tr>"
+	for(let k in headers){
+		result += "<th>" + headers[k] + "</th>"
+	}
+	result += "</tr>";
+
+	for(let i in objectArrays){
+		result += "<tr>";
+		let s = objectArrays[i];
+		for(let a in s) {
+			if( typeof s[a] == 'string' && s[a].indexOf('images') != -1){
+				result += "<td> <img src='" + s[a] + "' /> </td>"	
+			}else{
+				result += "<td>" + s[a] + "</td>"	
+			}
+			
+		}
+		result += "</tr>";
+	}			
+	result += "</table>";
+	return result;
+}
+
+let table = makeTableHTML(headers,students);
+document.write(table);
+</script>
+</body>
+</html>
