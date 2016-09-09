@@ -9,9 +9,9 @@
 <pre>
 <script type="text/javascript">
     //Comment
-    let x;
-    x = 0;
-    document.writeln(x);
+    let age;
+    age = 13;
+    document.writeln(age);
     let height = 1.25;
     document.writeln(height);
     let name = "Steve Jobs";
@@ -20,10 +20,10 @@
     let isFemale = true;
     document.writeln(isFemale);
 
-    x = false;
-    document.writeln(x);
+    let male = !isFemale;
+    document.writeln(male);
 
-    x = null;
+    let x = null;
     document.writeln(x);
 
     x = undefined;
@@ -58,6 +58,9 @@
     document.writeln(a / b);
 
     document.writeln(a++);
+
+    document.writeln(3*a*a + 4.5*a -9);
+
     a += 4;
 
     let isGreater = a > b;
@@ -75,15 +78,23 @@
     document.writeln(A);
 
 
+
+
     //define variables
     let pi = 3.1415926;
-    let str = "This is String";
-    let _foo = "this is also correct";
+    let color = "red";
+    let _fruit = "Apple";
+
+    document.writeln(_foo === "Apple");
+
     let $bar = 8.9 * 976;
     document.writeln(n);
     document.writeln(str);
     document.writeln(_foo);
     document.writeln($bar);
+
+    var 临时变量 = 1;
+    document.writeln(临时变量)
 
 </script>
 </pre>
