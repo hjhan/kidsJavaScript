@@ -20,6 +20,7 @@
     document.writeln(heightInCM);
     let name = "Steve Jobs";
     document.writeln(name);
+    document.writeln(name.repeat(20));
 
     let isFemale = true;
     document.writeln(isFemale);
@@ -135,6 +136,13 @@
     let fv = 3000 * (1 + rate*n);
     document.writeln("Future Value will be " + fv);
 
+    /**
+     * Download time estimate
+     */
+    let size = 2500;   //2.5GB
+    let speed = 3.3;   //3.3MB/s
+    let time = size / speed;
+    document.writeln("需要花费 " + time + " 秒 ");
 
     /**
      * Calculate age
