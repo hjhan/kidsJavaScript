@@ -18,3 +18,10 @@ Infinity - Infinity;   //NaN
 Infinity + Infinity;   //Infinity
 Infinity / Infinity;   //NaN
 Infinity * Infinity;     //Infinity
+
+/**
+ * differences of let and var
+ */
+{ let n1 = 5; console.log(n1); }  console.log(n1);
+
+{ var n1 = 5; console.log(n1); }  console.log(n1);
