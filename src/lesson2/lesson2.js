@@ -20,8 +20,13 @@ Infinity / Infinity;   //NaN
 Infinity * Infinity;     //Infinity
 
 /**
- * differences of let and var
+ * differences of let and var, scope and hoisting for var
  */
 { let n1 = 5; console.log(n1); }  console.log(n1);
 
 { var n1 = 5; console.log(n1); }  console.log(n1);
+
+
+console.log(n3); let n3 = 100;    // Uncaught ReferenceError: n3 is not defined(…)(anonymous function) @ VM172:1
+console.log(n4); var n4 = 200;     //undefined
+
