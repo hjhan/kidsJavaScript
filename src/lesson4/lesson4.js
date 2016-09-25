@@ -14,4 +14,12 @@ console.log(x + " 二进制=>10进制表示法为" + parseInt(x, 2));
 console.log(x + " 八进制=>10进制表示法为" + parseInt(x, 8));
 console.log(x + " 十六进制=>10进制表示法为" + parseInt(x, 16));
 
+/**
+ * 科学计数法
+ */
+3438434.348394.toExponential();   //"3.438434348394e+6"
+0.0000000000000495849.toExponential();   //"4.95849e-14"
 
+/**
+ * 判断是否闰年
+ */
