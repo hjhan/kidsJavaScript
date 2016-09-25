@@ -1,5 +1,5 @@
 /**
- * if else
+ 定义一个年龄，如果大于 18 ，输出成人，如果小于18， 输出未成人
  */
 let age = 10;
 if (age >= 18) {
@@ -8,6 +8,22 @@ if (age >= 18) {
     console.log("青少年，幼儿");
 }
 
+
+/**
+ 定义时间，如果12点之前，
+ 输出good morning,12点和18点之间，
+ 输出good afternon, 18点之后，
+ 输出good evening
+ */
+let hour = 13;
+if (hour < 12) {
+    console.log("good morning");
+}
+else if( hour < 18) {
+    console.log("good afternoon");
+} else {
+    console.log("good envening");
+}
 /**
  * while 打印当前数字
  */
