@@ -54,6 +54,17 @@ for( var i =2; i<=n; i++){
 }
 var end = new Date().getMilliseconds();
 console.log("2到1000的偶数和为：" + sum + ", 花费时间为：" + (end-begin) + "毫秒");
+
+/**
+ * 打印倒三角
+ */
+var n = 10;
+for(var i = 0; i<n; i++){
+    var str = " ".repeat(n-i-1);
+    str += "*".repeat(2*i+1);
+    console.log(str);
+}
+
 /**
  * for loop 判断偶数 或 质数/素数
  */
