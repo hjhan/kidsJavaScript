@@ -34,6 +34,37 @@ while (i < 100) {
     i += 1;
 }
 
+//计算2+4+6+8+...+1000?
+var n = 10000000;
+var sum = 0;
+var  begin = new Date().getMilliseconds();
+for( var i =2; i<=n; i = i+2){
+    sum += i;
+}
+var end = new Date().getMilliseconds();
+console.log("2到1000的偶数和为：" + sum + ", 花费时间为：" + (end-begin) + "毫秒");
+//或者
+var n = 10000000;
+var sum = 0;
+var  begin = new Date().getMilliseconds();
+for( var i =2; i<=n; i++){
+    if( i % 2 == 0){
+        sum += i;
+    }
+}
+var end = new Date().getMilliseconds();
+console.log("2到1000的偶数和为：" + sum + ", 花费时间为：" + (end-begin) + "毫秒");
+
+/**
+ * 打印倒三角
+ */
+var n = 10;
+for(var i = 0; i<n; i++){
+    var str = " ".repeat(n-i-1);
+    str += "*".repeat(2*i+1);
+    console.log(str);
+}
+
 /**
  * for loop 判断偶数 或 质数/素数
  */
