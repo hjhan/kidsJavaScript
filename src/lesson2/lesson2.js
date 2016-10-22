@@ -55,6 +55,13 @@ for( var i =2; i<=n; i++){
 var end = new Date().getMilliseconds();
 console.log("2到1000的偶数和为：" + sum + ", 花费时间为：" + (end-begin) + "毫秒");
 
+var sum = 0;
+for(var i = 2; i <= 10; i=i+2){
+    sum = sum + i;
+    console.log("i=" + i + ",sum =" + sum);
+}
+console.log("sum = " + sum);
+
 /**
  * 打印倒三角
  */
