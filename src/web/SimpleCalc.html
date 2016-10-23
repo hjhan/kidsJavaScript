@@ -1,0 +1,53 @@
+<html>
+<meta charset="utf-8">
+<head>
+    <title>简单计算器</title>
+    <style type="text/css">
+        input[type=button] {
+            margin: 3px 5px 3px 3px;
+        }
+
+        .btn-color {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form name='calForm'>
+    <input type="text" name="result" style="text-align:right"> <br>
+    <input type="button" class="btn" value="9" name="b9">
+    <input type="button" class="btn" value="8" name="b8">
+    <input type="button" class="btn" value="7" name="b7">
+    <input type="button" class="btn" value="+" name="plus"> <br>
+    <input type="button" class="btn" value="6" name="b6">
+    <input type="button" class="btn" value="5" name="b5">
+    <input type="button" class="btn" value="4" name="b4">
+    <input type="button" class="btn" value="-" name="minus"> <br>
+    <input type="button" class="btn" value="3" name="b3">
+    <input type="button" class="btn" value="2" name="b2">
+    <input type="button" value="1" name="b1">
+    <input type="button" value="0" name="b0"> <br>
+    <input type="button" value="." name="dot">
+    <input type="button" value="=" name="equal" onclick="result.value=eval(result.value)">
+    <input type="button" value="/" name="divide">
+    <input type="button" value="C" name="clear" onclick="result.value=''">
+</form>
+<script type="text/javascript">
+    /*function disNum(num)
+     {
+     calForm.result.value += num
+     }*/
+    document.addEventListener('DOMContentLoaded', function () {
+        var buttons = document.querySelectorAll("input[type=button]");
+        for (var i = 0; i < buttons.length; i++) {
+            var b = buttons[i];
+            if (b.name != 'clear' && b.name != 'equal') {
+                b.onclick = function (e) {
+                    calForm.result.value += e.target.value;
+                };
+            }
+        }
+    });
+</script>
+</body>
+</html>
