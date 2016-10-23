@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Light</title>
+    <style type="text/css">
+        .traffic-light {
+            width: 100%;
+        }
+
+        .off {
+            background-color: transparent !important;
+        }
+
+        .traffic-light {
+            margin: 0 auto;
+            width: 20%;
+            min-width: 180px;
+            border: 1px solid gray;
+        }
+
+        .traffic-light div {
+            margin: 0 auto;
+            width: 150px;
+            height: 150px;
+            border: 3px solid gray;
+            border-radius: 50%;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="traffic-light">
+    <div class="light red off"></div>
+    <div class="light yellow off"></div>
+    <div class="light green off"></div>
+</div>
+
+<button type="button" onclick="cycle()">Next cycle</button>
+<button type="button" onclick="autoCycle()">Auto cycle</button>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+<script type="text/javascript">
+    var $tl = $('.traffic-light'), // Traffic light element
+            $lights = $('.light', $tl), // All lights in one place
+            states = [0, 4, 6, 1, 4]; // Binary states of traffic light
+
+    function cycle() {
+        var currentStateArr = $('.light', $tl).map(function (i, lightEl) {
+                    return ~~!($(lightEl).hasClass('off'));
+                }).get(),
+                currentStateNum = parseInt(currentStateArr.join(''), 2); // Converting current TL state to decimal number for more comfort
+
+        if (currentStateNum === 0) { // If ALL lights are OFF and we are here then next is obviously red
+            return $lights.addClass('off').siblings('.red').removeClass('off'); // and nothing to do here more
+        }
+
+        var nextStateIndex = states.indexOf(currentStateNum) + 1,
+                nextStateNum = (nextStateIndex === states.length) ? 0 : parseInt(states[nextStateIndex]),
+                toTurnOn = null; // Lights to turn on
+
+        $lights.addClass('off'); // Setting OFF all lights
+
+        if (nextStateNum === 4) { // 4 = 100 > | Red:On | Yellow:Off | Green:Off |
+            toTurnOn = $lights.siblings('.red');
+        } else if (nextStateNum === 6) { // 6 = 110 > | Red:On | Yellow:On | Green:Off |
+            toTurnOn = $lights.not('.green');
+        } else if (nextStateNum === 1) { // 1 = 001 > | Red:On | Yellow:Off | Green:On |
+            toTurnOn = $lights.siblings('.green');
+        } else if (nextStateNum === 2) { // 2 = 010 > | Red:Off | Yellow:On | Green:Off |
+            toTurnOn = $lights.siblings('.yellow');
+        }
+
+        // Turning on what we decided earlier
+        !(toTurnOn === null) ? toTurnOn.removeClass('off') : null;
+    }
+
+    var interval = null;
+
+    function autoCycle() {
+        if (!(interval === null)) {
+            clearInterval(interval); // Stop cycling
+            interval = null; // Clear remebered interval
+            return;
+        }
+
+        // Setting c ycle intervgal to 1 second
+        interval = setInterval(cycle, 1000); // Starting cycle and remember interval
+    }
+</script>
+</body>
+</html>
