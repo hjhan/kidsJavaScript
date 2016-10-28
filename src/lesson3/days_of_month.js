@@ -1,11 +1,11 @@
 /**
  给定月份和年，求出当月有多少天
+ i.e 2014年8月=31天，2015年2月=28天，2016年2月=29天，2016年11月=30天，2100年2月=28天等
  */
 
 function isLeap(year) {
-    if (((year % 4 == 0) && !(year % 100 == 0))
-        || (year % 400 == 0)) return true;
-    else return false;
+    return (((year % 4 == 0) && !(year % 100 == 0))
+    || (year % 400 == 0));
 }
 
 function daysOfMonth(month, year) {
