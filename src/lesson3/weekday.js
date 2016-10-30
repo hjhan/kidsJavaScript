@@ -22,6 +22,8 @@ function weekDay(day) {
         case 0:
             console.log("噢耶，周末了!!");
             break;
+        default:
+            console.log("非法星期");
     }
 }
 weekDay(1);
