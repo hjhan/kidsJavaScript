@@ -71,6 +71,30 @@ for(var i = 0; i<n; i++){
     str += "*".repeat(2*i+1);
     console.log(str);
 }
+/**
+ *                  1
+ VM1657:10         2 3
+ VM1657:10        4 5 6
+ VM1657:10       7 8 9 10
+ VM1657:10      11 12 13 14 15
+ VM1657:10     16 17 18 19 20 21
+ VM1657:10    22 23 24 25 26 27 28
+ VM1657:10   29 30 31 32 33 34 35 36
+ VM1657:10  37 38 39 40 41 42 43 44 45
+ VM1657:10 46 47 48 49 50 51 52 53 54 55
+ * @type {number}
+ */
+var n = 11;
+var count = 1;
+for (var i = 0; i < n; i++) {
+    var str = " ".repeat(n - i - 1);
+    for (var j = 0; j < i; j++) {
+        str += count++;
+        str += " ";
+    }
+    console.log(str);
+}
+
 
 /**
  * for loop 判断偶数 或 质数/素数
