@@ -7,11 +7,15 @@ class Student{
         this.birthday = birthday;
     }
     getScore(s){
-        return scores[s];
+        return this.scores[s];
     }
     getAge(){
         var now = new Date();
         return now.getFullYear() - this.birthday.substr(0,4);
+    }
+    getGender()
+    {
+        return this.gender;
     }
 }
 
