@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PokerDemo</title>
+    <script src="poker.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript"  >
+
+    /**
+     * Poker.getCardImage  (size, suit, point)
+     Poker.getCardCanvas (size, suit, point)
+     Poker.getCardData   (size, suit, point)
+     size  - 牌的象素高度。牌的宽高比固定为3:4。缺省值为200。
+     suit  - 牌面花色。取值大小写不敏感，必须为下列[]内的值之一：
+     ['h', 'hearts', 'd', 'diamonds', 's', 'spades', 'c', 'clubs']
+     值对应红桃，方块，黑桃，梅花, 'h', 'd', 's', 'c' 是缩略写法
+     当牌面点数为'JOKER'时，红桃和方块表示牌为大王；黑桃和梅花表示牌为小王。
+     缺省值为'h'
+     point - 牌面点数。取值大小写不敏感，必须为下列[]内的值之一：
+     ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'O', 'JOKER']
+     'O'(字母O)是'JOKER'的缩略写法
+     缺省值为'O'
+     *
+     */
+
+
+
+//https://github.com/Tairraos/Poker.JS/tree/master/source
+    //insert a <img> to the end of body
+    document.body.appendChild(Poker.getCardImage(60,'hearts','q'));
+    //insert a <canvas> to the end of body
+    document.body.appendChild(Poker.getCardCanvas(60,'hearts','A'));
+
+   /* console.log(_.chunk(['a','b','c','d'],2));
+
+    var a = _.assign({'a':1},{'b':2},{'c':3});
+    var n = _.random(4,100);
+    console.log(n);
+    document.writeln(a);*/
+    console.log(a);
+    console.log("%cwhat?  the %cfuck","width:100px;height:100px;border-radius:50px;color:green","color:red")
+</script>
+
+
+</body>
+</html>
