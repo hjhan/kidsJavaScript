@@ -26,3 +26,23 @@ s.getAge();  //8
 s.getScore("chinese");
 s.getScore("english");
 s.getScore("math");
+
+
+class S{
+    constructor(id)
+    {
+        this.id = id;
+    }
+
+    setName(name){
+        this.name = name;
+    }
+
+    toString(){
+        console.log(this.id + " " + this.name);
+    }
+}
+
+var s = new S(1);
+s.setName("Steve");
+s.toString();
