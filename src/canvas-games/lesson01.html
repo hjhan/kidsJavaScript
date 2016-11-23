@@ -22,6 +22,24 @@
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
 
+    //Block for Snakes
+    const blockSize = 20;
+    class Block{
+        constructor(col,row){
+            this.col = col;
+            this.row = row;
+        }
+        drawSquare(color){
+            var x = this.col * blockSize;
+            var y = this.row * blockSize;
+            ctx.fillStyle = color;
+            ctx.fillRect(x,y,blockSize,blockSize);
+        }
+    }
+
+    var block = new Block(3,4);
+    block.drawSquare("LightBlue");
+
     ctx.beginPath();
     ctx.rect(20, 40, 50, 50);
     ctx.fillStyle = "#FF0000";
