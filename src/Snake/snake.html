@@ -59,28 +59,45 @@
         }
     };
     // The Block constructor
-    var Block = function (col, row) {
-        this.col = col;
-        this.row = row;
-    };
+    class Block{
+        constructor(col, row) {
+            this.col = col;
+            this.row = row;
+        }
+        drawSquare(color) {
+            var x = this.col * blockSize;
+            var y = this.row * blockSize;
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, blockSize, blockSize);
+        }
+        drawCircle(color) {
+            var centerX = this.col * blockSize + blockSize / 2;
+            var centerY = this.row * blockSize + blockSize / 2;
+            ctx.fillStyle = color;
+            circle(centerX, centerY, blockSize / 2, true);
+        }
+        equal(otherBlock) {
+            return this.col === otherBlock.col && this.row === otherBlock.row;
+        }
+    }
     // Draw a square at the block's location
-    Block.prototype.drawSquare = function (color) {
+  /*  Block.prototype.drawSquare = function (color) {
         var x = this.col * blockSize;
         var y = this.row * blockSize;
         ctx.fillStyle = color;
         ctx.fillRect(x, y, blockSize, blockSize);
-    };
+    };*/
     // Draw a circle at the block's location
-    Block.prototype.drawCircle = function (color) {
+    /*Block.prototype.drawCircle = function (color) {
         var centerX = this.col * blockSize + blockSize / 2;
         var centerY = this.row * blockSize + blockSize / 2;
         ctx.fillStyle = color;
         circle(centerX, centerY, blockSize / 2, true);
-    };
+    };*/
     // Check if this block is in the same location as another block
-    Block.prototype.equal = function (otherBlock) {
+    /*Block.prototype.equal = function (otherBlock) {
         return this.col === otherBlock.col && this.row === otherBlock.row;
-    };
+    };*/
 
     // The Snake constructor
     var Snake = function () {
