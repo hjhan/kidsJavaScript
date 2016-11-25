@@ -17,6 +17,14 @@ class Student{
     {
         return this.gender;
     }
+    getAverage(){
+        var avg = 0;
+        var keys = Object.keys(scores);
+        for ( k of keys ) {
+            avg += scores[k];
+        }
+        return avg / keys.length;
+    }
 }
 
 var scores = {"chinese":96,"math":100,"english":99};
