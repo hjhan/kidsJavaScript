@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation</title>
+</head>
+<body>
+<div style="width: 30px;height: 30px;background: red">
+</div>
+<script>
+    window.onload = function () {
+        var d = document.getElementsByTagName("div");
+
+        function move() {
+            d.left = d.offsetLeft + 20 + 'px';
+        }
+
+        setInterval(move, 1000);
+        //http://cssreference.io/
+    }
+
+</script>
+</body>
+</html>

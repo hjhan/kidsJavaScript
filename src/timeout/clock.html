@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock</title>
+</head>
+<body style="background: black;color:white">
+<div style="position:absolute;top:50%;left: 40%">
+    <h2>My Clock：</h2>
+    <h1 id="time"></h1>
+</div>
+
+<script>
+    window.onload = function () {
+        var t = document.getElementById("time");
+        tick();
+        function twoDigits(n) {
+            return (n < 10) ? '0' + n : n;
+        }
+
+        function tick() {
+            var date = new Date();
+            var h = twoDigits(date.getHours());
+            var m = twoDigits(date.getMinutes());
+            var s = twoDigits(date.getSeconds());
+            //t.innerHTML = date.toLocaleDateString() + date.toLocaleTimeString();
+            //date.toISOString();
+            t.innerHTML = (date.getYear() + 1900) + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日 " + h + ':' + m + ':' + s;
+        }
+
+        setInterval(tick, 1000);
+    }
+
+</script>
+</body>
+</html>
