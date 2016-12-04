@@ -83,8 +83,6 @@
             return this.col === otherBlock.col && this.row === otherBlock.row;
         }
     }
-
-
     class Snake{
         // The Snake constructor
         constructor() {
@@ -99,9 +97,12 @@
 
         // Draw a square for each segment of the snake's body
         draw() {
-            for (var i = 0; i < this.segments.length; i++) {
-                this.segments[i].drawSquare("Blue");
-            }
+            this.segments[0].drawSquare("Black");
+            this.segments[1].drawSquare("Red");
+            this.segments[2].drawSquare("Blue");
+            /*for (var i = 0; i < this.segments.length; i++) {
+                this.segments[i].drawSquare("Red");
+            }*/
         }
 
         // Create a new head and add it to the beginning of
@@ -220,13 +221,6 @@
             }
         }
     }
-   /* $("body").keydown(function (event) {
-        var newDirection = directions[event.keyCode];
-        if (newDirection !== undefined) {
-            snake.setDirection(newDirection);
-        }
-    });
-*/
 
 </script>
 
