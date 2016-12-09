@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PieChart</title>
+</head>
+<body>
+<canvas id="c" width="800" height="800">浏览器不支持Canvas</canvas>
+<script type="text/javascript">
+    var students = [
+        {grade: '2年级', count: 13, color: 'red'},
+        {grade: '3年级', count: 2, color: 'orange'},
+        {grade: '4年级', count: 4, color: 'blue'},
+        {grade: '5年级', count: 9, color: 'green'}
+    ];
+
+    function getTotal() {
+        var total = 0;
+        for (s of students) {
+            total += s.count;
+        }
+        return total;
+    }
+
+    var c = document.getElementById("c");
+    var ctx = c.getContext("2d");
+
+    var total = getTotal();
+    var startAngle = Math.PI / 4;
+    var i = 0;
+    ctx.font = "Bold 25px Arial";       // 设置字体
+    for (s of students) {
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.lineTo(300, 300);
+        var angle = s.count / total * 2 * Math.PI;
+        ctx.arc(300, 300, 200, startAngle, startAngle + angle);   //绘制扇形
+        ctx.fillRect(210, 520 + 50 * i, 80, 30);   // 设置填充颜色
+        ctx.fillText(s.grade + "人数", 300, 540 + 50 * i++);
+        startAngle += angle;
+        ctx.fill();
+    }
+</script>
+</body>
+</html>
