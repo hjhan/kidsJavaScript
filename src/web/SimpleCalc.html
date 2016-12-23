@@ -12,8 +12,7 @@
         }
     </style>
 </head>
-<body>
-<form name='calForm'>
+<form name='calForm' style="width:100%;text-align:center">
     <input type="text" name="result" style="text-align:right"> <br>
     <input type="button" class="btn" value="9" name="b9">
     <input type="button" class="btn" value="8" name="b8">
@@ -30,6 +29,7 @@
     <input type="button" value="." name="dot">
     <input type="button" value="=" name="equal" onclick="result.value=eval(result.value)">
     <input type="button" value="/" name="divide">
+    <input type="button" value="*" name="multiply">
     <input type="button" value="C" name="clear" onclick="result.value=''">
 </form>
 <script type="text/javascript">
@@ -37,7 +37,7 @@
      {
      calForm.result.value += num
      }*/
-    document.addEventListener('DOMContentLoaded', function () {
+    document.onload = function () {
         var buttons = document.querySelectorAll("input[type=button]");
         for (var i = 0; i < buttons.length; i++) {
             var b = buttons[i];
@@ -47,7 +47,7 @@
                 };
             }
         }
-    });
+    };
 </script>
 </body>
 </html>
