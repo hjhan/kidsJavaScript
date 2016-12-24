@@ -64,8 +64,8 @@ function cnt(cur) {
     return c;
 }
 function count(n) {
-    for (var i = 0; i <= 100; i++) {
-        for (var j = 0; j <= 100; j++) {
+    for (var i = 0; i <= 1000; i++) {
+        for (var j = 0; j <= 1000; j++) {
             var a = cnt(i);
             var b = cnt(j);
             var d = cnt(i + j);
