@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+请给4张牌面的值
+<input class="num" type="number" max="10" min="1" step="1">
+<input class="num" type="number" max="10" min="1" step="1">
+<input class="num" type="number" max="10" min="1" step="1">
+<input class="num" type="number" max="10" min="1" step="1">
+<button id="let it go">计算</button>
+
+<h3 id="result"></h3>
+
+</body>
+<script src="24.js"></script>
+<script>
+    document.getElementById('let it go').onclick = function () {
+        var inputs = document.getElementsByClassName('num');
+        var problem = false;
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].value > 10 || inputs[i].value <= 0 || (!inputs[i].value)) {
+                problem = true;
+            }
+        }
+        if (problem) {
+            document.getElementById('result').innerHTML = '等等...牌不对啊';
+        }
+        else {
+            document.getElementById('result').innerHTML = '计算中....';
+            var results = computeQ(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value);
+            document.getElementById('result').innerHTML = "可以计算出24点的方式 : " + results.toString()
+        }
+    };
+</script>
+</html>

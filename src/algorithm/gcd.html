@@ -6,8 +6,7 @@
 <body>
 
 <script type="text/javascript">
-
-    function gcd(m, n) {
+    function gcd(m, n) { //最大公约数
         if (m < n) {
             var temp = n;
             n = m;
@@ -15,7 +14,30 @@
         }
         return (m % n == 0) ? n : gcd(n, m % n);
     }
+    function lcm(m, n) { //最小公倍数
+        return m * n / gcd(m, n);
+    }
     var r = gcd(60, 42);
+
+    function write() {
+        for (var i = 0; i < arguments.length; i++) {
+            document.write(" " + arguments[i]);
+        }
+    }
+
+    function fun(n) {
+        var k;
+        for (var i = 1; i <= n; i++) {
+            k = 1;
+            for (var j = 1; j < i; j++) {
+                write(k);
+                k = k * (i - j) / j;
+            }
+            write("1<br/>");
+        }
+    }
+    ;
+    fun(5);
 
 </script>
 
