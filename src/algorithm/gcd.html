@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>gcd</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    function gcd(m, n) {
+        if (m < n) {
+            var temp = n;
+            n = m;
+            m = temp;
+        }
+        return (m % n == 0) ? n : gcd(n, m % n);
+    }
+    var r = gcd(60, 42);
+
+</script>
+
+</body>
+</html>

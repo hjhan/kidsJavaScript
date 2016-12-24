@@ -19,3 +19,5 @@ function gcd(m, n) {
 //var r= gcd(12,6);
 var r = gcd(48, 36);
 console.log(r);
+var r = gcd(60, 42);
+console.log(r);
