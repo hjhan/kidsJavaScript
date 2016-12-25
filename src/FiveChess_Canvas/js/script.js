@@ -8,8 +8,6 @@ for (var i = 0; i < 15; i++) {
         chessBoard[i][j] = 0;
     }
 }
-
-
 /*
  //赢法数组，用来记录所有可能的赢法方案，
  var wins=[];
@@ -72,9 +70,7 @@ for (var i = 0; i < 15; i++) {
  blackWin[i]=0;
  whiteWin[i]=0;
  }
-
  */
-
 
 //获取棋盘在dom中的元素
 var chess = document.getElementById('chess');

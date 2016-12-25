@@ -1,78 +1,97 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset='utf-8'>
-  </head>
-  <body>
-    <canvas id="c" width="800" height="600"></canvas>
+</head>
+<body>
+<canvas id="c" width="800" height="600"></canvas>
 
-    <script type="text/javascript"> 
+<script type="text/javascript">
+    var colors = ['violet', 'red', 'blue', 'green', 'pink', 'yellow', 'orange', 'purple', 'black'];
 
-        window.onload = function(){
-          // 获取上下文
-          var c = document.getElementById('c');
-          var ctx = c.getContext("2d");
-          // 绘制背景
-     /*     var gradient = ctx.createLinearGradient(0,0,0,300);
-          gradient.addColorStop(0,"#e0e0e0");
-          gradient.addColorStop(1,"#ffffff");
-          ctx.fillStyle = gradient;
-          ctx.fillRect(0,0,c.width,c.height);
-*/
-          
-          // 描绘边框
-          const cell = 10;        
-          var rows = c.height / cell;
-          var cols = c.width / cell;
-          ctx.lineWidth = 1;
-          ctx.strokeStyle = "purple";
+    window.onload = function () {
+        // 获取上下文
+        var c = document.getElementById('c');
+        var ctx = c.getContext("2d");
 
-          // 结束边框描绘
-          ctx.beginPath();
-          // 准备画竖线
-          for (var col = 0; col <= cols; col++) {
-            var x = col * cell;
-            ctx.moveTo(x,0);
-            ctx.lineTo(x,c.height);
-          }
-          // 准备画横线
-          for(var row = 0; row <= rows; row++){
-            var y = row * cell;
-            ctx.moveTo(0,y);
-            ctx.lineTo(c.width, y);
-          }
-          ctx.stroke();
+        // 描绘边框
+        const cell = 10;
+        var rows = c.height / cell;
+        var cols = c.width / cell;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "purple";
+
+        function drawBoard() {
+            // 结束边框描绘
+            ctx.beginPath();
+            // 准备画竖线
+            for (var col = 0; col <= cols; col++) {
+                var x = col * cell;
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, c.height);
+            }
+            // 准备画横线
+            for (var row = 0; row <= rows; row++) {
+                var y = row * cell;
+                ctx.moveTo(0, y);
+                ctx.lineTo(c.width, y);
+            }
+            ctx.stroke();
+        }
 
 
-          var block = [[0,0,1,0],
-                       [0,0,1,0],
-                       [0,1,1,0],
-                       [0,0,0,0]];
+        var shapeL = [[0, 0, 1, 0],
+            [0, 0, 1, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0, 0]];
 
-      for(var i = 0; i < 4; i++){
-        for(var j = 0; j< 4; j++){
-            if(block[i][j] === 1) {
-              drawSquare(50 + i*10, 50+j*10);
+        var shapeI = [[0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [1, 1, 1, 1],
+            [0, 0, 0, 0]];
+
+        var shapeO = [[0, 0, 0, 0],
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
+            [0, 0, 0, 0]];
+
+
+        function drawBlock(block, x, y, color) {
+            for (var i = 0; i < 4; i++) {
+                for (var j = 0; j < 4; j++) {
+                    if (block[i][j] === 1) {
+                        drawSquare(x + i * 10, y + j * 10, color);
+                    }
+                }
             }
         }
-      }
 
-      drawSquare(30,40);
+        var x = 50;
+        var y = 50;
 
+        function draw() {
+            ctx.clearRect(0, 0, c.width, c.height);
+            drawBoard();
+            drawBlock(shapeL, x, y, colors[0]);
+            drawBlock(shapeI, x + 50, y, colors[1]);
+            drawBlock(shapeO, x + 100, y, colors[2]);
+            y += cell;
+            if (y >= c.height - 20) {
+                clearInterval(t);
+            }
+        }
 
-      function drawSquare(x,y){
-        ctx.beginPath();
-        ctx.rect(x, y, cell, cell);
-        ctx.fillStyle = "green";
-        ctx.fill();
-        ctx.closePath();
+        var t = setInterval(draw, 100);
+        drawSquare(30, 40, colors[0]);
+        function drawSquare(x, y, color) {
+            ctx.beginPath();
+            ctx.rect(x, y, cell, cell);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.closePath();
+        }
 
-      }
+    };
 
-        
-         
-
-        };
-      
-    </script>
-  </body>
+</script>
+</body>
