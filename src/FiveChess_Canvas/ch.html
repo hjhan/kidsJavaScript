@@ -13,17 +13,17 @@
 </head>
 <body bgcolor="#7fffd4">
 <h1 align="center">HTML5 Canvas五子棋</h1>
-<canvas id="chess" width="450px" height="450px"></canvas>
+<canvas id="c" width="450px" height="450px"></canvas>
 <script type="text/javascript">
-    var chess = document.getElementById('chess');
-    var context = chess.getContext('2d');
+    var c = document.getElementById('c');
+    var ctx = c.getContext('2d');
     function drawChessBoard() {  /*画棋盘格14*14格*/
         for (var i = 0; i < 15; i++) {
-            context.moveTo(15 + i * 30, 15);
-            context.lineTo(15 + i * 30, 435);
-            context.moveTo(15, 15 + i * 30);
-            context.lineTo(435, 15 + i * 30);
-            context.stroke();
+            ctx.moveTo(15 + i * 30, 15);
+            ctx.lineTo(15 + i * 30, 435);
+            ctx.moveTo(15, 15 + i * 30);
+            ctx.lineTo(435, 15 + i * 30);
+            ctx.stroke();
         }
     }
 
@@ -38,14 +38,12 @@
     }
 
     function drawChess(i, j) {
-        context.beginPath();
-        context.arc(15 + i * 30, 15 + j * 30, 13, 0, 2 * Math.PI);
-        context.closePath();
-        context.fillStyle = isBlack ? 'black' : 'red';
-        context.fill();
+        ctx.beginPath();
+        ctx.arc(15 + i * 30, 15 + j * 30, 13, 0, 2 * Math.PI);
+        ctx.fillStyle = isBlack ? 'black' : 'red';
+        ctx.fill();
     }
-
-    chess.onclick = function (e) {
+    c.onclick = function (e) {
         var x = e.offsetX;  //获取点击的位置相当于棋盘左上角的位置
         var y = e.offsetY;
         var i = Math.floor(x / 30);
