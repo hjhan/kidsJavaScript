@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>五子棋</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 50px auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body bgcolor="#7fffd4">
+<h1 align="center">HTML5 Canvas五子棋</h1>
+<canvas id="chess" width="450px" height="450px"></canvas>
+<script type="text/javascript">
+    var chess = document.getElementById('chess');
+    var context = chess.getContext('2d');
+    function drawChessBoard() {  /*画棋盘格14*14格*/
+        for (var i = 0; i < 15; i++) {
+            context.moveTo(15 + i * 30, 15);
+            context.lineTo(15 + i * 30, 435);
+            context.moveTo(15, 15 + i * 30);
+            context.lineTo(435, 15 + i * 30);
+            context.stroke();
+        }
+    }
+
+    drawChessBoard();
+    var chessBoard = [];//二维数组用来保存棋盘信息，0为没有走过的，1为黑棋，2为白棋
+    var isBlack = true;//目前正要下的棋子的颜色，初始化为true表示黑子棋子。false表示白色棋子
+    for (var i = 0; i < 15; i++) { //初始化棋盘信息，将二维数组所有项全部初始化为0
+        chessBoard[i] = [];
+        for (var j = 0; j < 15; j++) {
+            chessBoard[i][j] = 0;
+        }
+    }
+
+    function drawChess(i, j) {
+        context.beginPath();
+        context.arc(15 + i * 30, 15 + j * 30, 13, 0, 2 * Math.PI);
+        context.closePath();
+        context.fillStyle = isBlack ? 'black' : 'red';
+        context.fill();
+    }
+
+    chess.onclick = function (e) {
+        var x = e.offsetX;  //获取点击的位置相当于棋盘左上角的位置
+        var y = e.offsetY;
+        var i = Math.floor(x / 30);
+        var j = Math.floor(y / 30);
+        if (chessBoard[i][j] === 0) {//在画棋子之前先判断一下棋盘上该位置是否已经有了棋子，为空时才允许放置
+            drawChess(i, j);//画棋子
+            chessBoard[i][j] = isBlack ? 1 : 2;
+            isBlack = !isBlack;//将下一步棋的颜色进行反转
+        }
+    }
+
+</script>
+</body>
+</html>

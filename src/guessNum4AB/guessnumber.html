@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>guess number</title>
+    <meta charset="utf-8">
+    <title>猜数字</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-
-    <!--<link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'>-->
     <link href="css/style.css" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -17,8 +16,7 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                <h1>Guess Number</h1>
-                <h1>C.W.</h1>
+                <h1>猜数字</h1>
             </div>
         </div>
     </div>
@@ -27,7 +25,7 @@
     <div class="row">
         <div class="span12">
             <div class="element">
-                <h2 class="regular-title">Instruction</h2>
+                <h2 class="regular-title">玩法指导</h2>
                 <div class="regular-content">
                     <p>
                         90年代电子词典文曲星上的怀旧经典推理小游戏，需要猜测4个数字及其排列顺序，一共有10次机会。若猜不对会提示[?A?B]。A数字和位置都正确的个数，B代表数字正确但位置不正确的个数。
@@ -47,7 +45,7 @@
                         <input type="text" name="guess1" id="guess1" maxlength="1"/>
                         <input type="text" name="guess2" id="guess2" maxlength="1"/>
                         <input type="text" name="guess3" id="guess3" maxlength="1"/>
-                        <input type="button" name="guess" value="guess" class="btn" onclick="guessNumber()"/>
+                        <input type="button" name="guess" value="我猜" class="btn" onclick="guessNumber()"/>
                     </form>
                     <div class="tip"></div>
                 </div>
@@ -55,14 +53,14 @@
         </div>
         <div class="span6 offset2">
             <div class="element">
-                <h2 class="regular-title">Result</h2>
+                <h2 class="regular-title">结果</h2>
                 <div class="regular-content guess-result">
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Inputs</th>
-                            <th>Results</th>
+                            <th>序号</th>
+                            <th>输入</th>
+                            <th>结果</th>
                         </tr>
                         </thead>
                         <tbody id="result"></tbody>
@@ -79,7 +77,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             ×
         </button>
-        <h3 id="myModalLabel">Congraulations!</h3>
+        <h3 id="myModalLabel">恭喜!</h3>
     </div>
     <div class="modal-body">
         <p>
@@ -92,7 +90,7 @@
             Close
         </button>
         <button class="btn btn-primary" onclick="window.location.reload();">
-            Play Again
+            再来一次
         </button>
     </div>
 </div>
@@ -119,10 +117,7 @@
         </button>
     </div>
 </div>
-<footer id="footer">
-    <p id="copyright">Copyright © 2013 Chenggang Wang</p>
-</footer>
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/guessnumber.js"></script>
 </body>

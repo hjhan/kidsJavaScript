@@ -1,5 +1,5 @@
 var chessBoard = [];//二维数组用来保存棋盘信息，0为没有走过的，1为黑棋，2为白棋
-var currentChess = true;//目前正要下的棋子的颜色，初始化为true表示黑子棋子。false表示白色棋子
+var isBlack = true;//目前正要下的棋子的颜色，初始化为true表示黑子棋子。false表示白色棋子
 var over = false;//标志游戏是否结束，有一方赢了就表示结束
 //初始化棋盘信息，将二维数组所有项全部初始化为0
 for (var i = 0; i < 15; i++) {
@@ -75,7 +75,7 @@ for (var i = 0; i < 15; i++) {
 //获取棋盘在dom中的元素
 var chess = document.getElementById('chess');
 var context = chess.getContext('2d');
-context.strokeStyle = "#BFBFBF";
+//context.strokeStyle = "#BFBFBF";
 
 /*画棋盘格14*14格*/
 var drawChessBoard = function () {
@@ -96,15 +96,16 @@ var drawChess = function (i, j) {
     context.beginPath();
     context.arc(15 + i * 30, 15 + j * 30, 13, 0, 2 * Math.PI);
     context.closePath();
-    var gradient = context.createRadialGradient(15 + i * 30, 15 + j * 30, 13, 15 + i * 30, 15 + j * 30, 0);
-    if (currentChess) {//设置黑棋子渐变颜色
+    /*   var gradient = context.createRadialGradient(15 + i * 30, 15 + j * 30, 13, 15 + i * 30, 15 + j * 30, 0);
+     if (isBlack) {//设置黑棋子渐变颜色
         gradient.addColorStop(0, "#0A0A0A");
         gradient.addColorStop(1, "#636766");
     } else {//设置白棋子渐变颜色
         gradient.addColorStop(0, "#D1D1D1");
         gradient.addColorStop(1, "#F9F9F9");
     }
-    context.fillStyle = gradient;
+     context.fillStyle = gradient;*/
+    context.fillStyle = isBlack ? 'black' : 'white';
     context.fill();
 }
 
@@ -120,7 +121,7 @@ chess.onclick = function (e) {
     var j = Math.floor(y / 30);
     if (chessBoard[i][j] === 0) {//在画棋子之前先判断一下棋盘上该位置是否已经有了棋子，为空时才允许放置
         drawChess(i, j);//画棋子
-        if (currentChess) {//如果放下的棋子为黑棋
+        if (isBlack) {//如果放下的棋子为黑棋
             chessBoard[i][j] = 1;
             /*for (var k = 0; k <count; k++) {//遍历所有赢法
              if (wins[i][j][k]) {
@@ -145,7 +146,7 @@ chess.onclick = function (e) {
              }
              }*/
         }
-        currentChess = !currentChess;//将下一步棋的颜色进行反转
+        isBlack = !isBlack;//将下一步棋的颜色进行反转
     }
 }
 //初始化棋盘
