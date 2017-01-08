@@ -8,69 +8,67 @@ for (var i = 0; i < 15; i++) {
         chessBoard[i][j] = 0;
     }
 }
-/*
- //赢法数组，用来记录所有可能的赢法方案，
- var wins=[];
- //赢法的统计数组，分别统计黑棋和白棋在上面所有赢法方案中已经完成了几颗棋子了
- var blackWin=[],whiteWin=[];
- //初始化枚举赢法的数组，为一个三维数组
- for (var i = 0; i < 15; i++) {
- wins[i]=[];
- for (var j = 0; j < 15; j++) {
- wins[i][j]=[];
- }
- }
+//赢法数组，用来记录所有可能的赢法方案，
+var wins = [];
+//赢法的统计数组，分别统计黑棋和白棋在上面所有赢法方案中已经完成了几颗棋子了
+var blackWin = [], whiteWin = [];
+//初始化枚举赢法的数组，为一个三维数组
+for (var i = 0; i < 15; i++) {
+    wins[i] = [];
+    for (var j = 0; j < 15; j++) {
+        wins[i][j] = [];
+    }
+}
 
- var count=0;
+var count = 0;
 
- //枚举所有可能的五个棋子竖直排列的情况
- for (var i = 0; i < 15; i++) {
- for (var j = 0; j < 11; j++) {
- for (var k = 0; k < 5; k++) {
- wins[i][j+k][count]=true;
- }
- count++;
- }
- }
+//枚举所有可能的五个棋子竖直排列的情况
+for (var i = 0; i < 15; i++) {
+    for (var j = 0; j < 11; j++) {
+        for (var k = 0; k < 5; k++) {
+            wins[i][j + k][count] = true;
+        }
+        count++;
+    }
+}
 
- //枚举所有可能的五个棋子水平排列的情况
- for (var i = 0; i < 15; i++) {
- for (var j = 0; j < 11; j++) {
- for (var k = 0; k < 5; k++) {
- wins[j+k][i][count]=true;
- }
- count++;
- }
- }
-
-
- //枚举所有可能的五个棋子反斜线排列的情况
- for (var i = 0; i < 11; i++) {
- for (var j = 0; j < 11; j++) {
- for (var k = 0; k < 5; k++) {
- wins[i+k][j+k][count]=true;
- }
- count++;
- }
- }
-
- //枚举所有可能的五个棋子正斜线排列的情况
- for (var i = 0; i < 11; i++) {
- for (var j = 14; j >3; j--) {
- for (var k = 0; k < 5; k++) {
- wins[i+k][j-k][count]=true;
- }
- count++;
- }
- }
+//枚举所有可能的五个棋子水平排列的情况
+for (var i = 0; i < 15; i++) {
+    for (var j = 0; j < 11; j++) {
+        for (var k = 0; k < 5; k++) {
+            wins[j + k][i][count] = true;
+        }
+        count++;
+    }
+}
 
 
- //分别初始化黑白两棋子在某种赢法的情况下已经有的棋子为0
- for (var i = 0; i < count; i++) {
- blackWin[i]=0;
- whiteWin[i]=0;
- }
- */
+//枚举所有可能的五个棋子反斜线排列的情况
+for (var i = 0; i < 11; i++) {
+    for (var j = 0; j < 11; j++) {
+        for (var k = 0; k < 5; k++) {
+            wins[i + k][j + k][count] = true;
+        }
+        count++;
+    }
+}
+
+//枚举所有可能的五个棋子正斜线排列的情况
+for (var i = 0; i < 11; i++) {
+    for (var j = 14; j > 3; j--) {
+        for (var k = 0; k < 5; k++) {
+            wins[i + k][j - k][count] = true;
+        }
+        count++;
+    }
+}
+
+
+//分别初始化黑白两棋子在某种赢法的情况下已经有的棋子为0
+for (var i = 0; i < count; i++) {
+    blackWin[i] = 0;
+    whiteWin[i] = 0;
+}
 
 //获取棋盘在dom中的元素
 var chess = document.getElementById('chess');
@@ -98,12 +96,12 @@ var drawChess = function (i, j) {
     context.closePath();
     /*   var gradient = context.createRadialGradient(15 + i * 30, 15 + j * 30, 13, 15 + i * 30, 15 + j * 30, 0);
      if (isBlack) {//设置黑棋子渐变颜色
-        gradient.addColorStop(0, "#0A0A0A");
-        gradient.addColorStop(1, "#636766");
-    } else {//设置白棋子渐变颜色
-        gradient.addColorStop(0, "#D1D1D1");
-        gradient.addColorStop(1, "#F9F9F9");
-    }
+     gradient.addColorStop(0, "#0A0A0A");
+     gradient.addColorStop(1, "#636766");
+     } else {//设置白棋子渐变颜色
+     gradient.addColorStop(0, "#D1D1D1");
+     gradient.addColorStop(1, "#F9F9F9");
+     }
      context.fillStyle = gradient;*/
     context.fillStyle = isBlack ? 'black' : 'white';
     context.fill();
@@ -123,28 +121,28 @@ chess.onclick = function (e) {
         drawChess(i, j);//画棋子
         if (isBlack) {//如果放下的棋子为黑棋
             chessBoard[i][j] = 1;
-            /*for (var k = 0; k <count; k++) {//遍历所有赢法
-             if (wins[i][j][k]) {
-             blackWin[k]++;
-             whiteWin[k]=undefined;
-             if (blackWin[k]===5) {//如果黑棋在第k中赢法中已经有了5颗棋子，说明黑棋赢了
-             window.alert("黑棋赢了,胜败乃兵家常事！");
-             over=true;
-             }
-             }
-             }*/
+            for (var k = 0; k < count; k++) {//遍历所有赢法
+                if (wins[i][j][k]) {
+                    blackWin[k]++;
+                    whiteWin[k] = undefined;
+                    if (blackWin[k] === 5) {//如果黑棋在第k中赢法中已经有了5颗棋子，说明黑棋赢了
+                        window.alert("黑棋赢了,胜败乃兵家常事！");
+                        over = true;
+                    }
+                }
+            }
         } else {//如果放下的棋子为白棋
             chessBoard[i][j] = 2;
-            /*for (var k = 0; k <count; k++) {
-             if (wins[i][j][k]) {
-             whiteWin[k]++;
-             blackWin[k]=undefined;
-             if (whiteWin[k]===5) {//如果白棋在第k中赢法中已经有了5颗棋子,说明白棋赢了
-             window.alert("白棋赢了，继续努力！");
-             over=true;
-             }
-             }
-             }*/
+            for (var k = 0; k < count; k++) {
+                if (wins[i][j][k]) {
+                    whiteWin[k]++;
+                    blackWin[k] = undefined;
+                    if (whiteWin[k] === 5) {//如果白棋在第k中赢法中已经有了5颗棋子,说明白棋赢了
+                        window.alert("白棋赢了，继续努力！");
+                        over = true;
+                    }
+                }
+            }
         }
         isBlack = !isBlack;//将下一步棋的颜色进行反转
     }
