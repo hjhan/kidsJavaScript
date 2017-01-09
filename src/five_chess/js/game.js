@@ -1,8 +1,3 @@
-//  ========== 
-//  =name:gobang 游戏 
-//  =anthor:刘敬
-//  =last modify date:2016-04-13
-//  ========== 
 (function (win) {
 
     var gb = function (option) {
@@ -12,13 +7,6 @@
             can = canObj.getContext("2d");
         self.contextObj = canObj;
         self.context = can;
-
-        if (!self.context) {
-            alert("浏览器不支持html5");
-            return;
-        }
-        ;
-
         self.Opt = {
             lineColor: "green",
             chessType: 1, //1 色彩棋子 2 仿真棋子

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chess</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 50px auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body bgcolor="pink">
+<h1>五子棋</h1>
+<canvas id="c" width="450px" height="450px"></canvas>
+<script type="text/javascript">
+    var chess = document.getElementById('c');
+    var ctx = chess.getContext('2d');
+    function drawChessBoard() {  /*画棋盘格14*14格*/
+        for (var i = 0; i < 15; i++) {
+            ctx.moveTo(15 + i * 30, 15);
+            ctx.lineTo(15 + i * 30, 435);
+            ctx.moveTo(15, 15 + i * 30);
+            ctx.lineTo(435, 15 + i * 30);
+            ctx.stroke();
+        }
+    }
+    drawChessBoard()
+    chess.onclick = function (e) {
+        if (over) {
+            window.alert("本轮游戏已经结束了，请刷新浏览器重新开始！");
+            return;
+        }
+        var x = e.offsetX;
+        var y = e.offsetY;
+        var i = Math.floor(x / 30);
+        var j = Math.floor(y / 30);
+        if (chessBoard[i][j] === 0) {
+            drawChess(i, j);
+            if (isBlack) {//如果放下的棋子为黑棋
+                chessBoard[i][j] = 1;
+                for (var k = 0; k < count; k++) {//遍历所有赢法
+                    if (wins[i][j][k]) {
+                        blackWin[k]++;
+                        whiteWin[k] = undefined;
+                        if (blackWin[k] === 5) {//如果黑棋在第k中赢法中已经有了5颗棋子，说明黑棋赢了
+                            window.alert("黑棋赢了,胜败乃兵家常事！");
+                            over = true;
+                        }
+                    }
+                }
+            } else {//如果放下的棋子为白棋
+                chessBoard[i][j] = 2;
+                for (var k = 0; k < count; k++) {
+                    if (wins[i][j][k]) {
+                        whiteWin[k]++;
+                        blackWin[k] = undefined;
+                        if (whiteWin[k] === 5) {//如果白棋在第k中赢法中已经有了5颗棋子,说明白棋赢了
+                            window.alert("白棋赢了，继续努力！");
+                            over = true;
+                        }
+                    }
+                }
+            }
+            isBlack = !isBlack;
+        }
+    }
+    var chessBoard = [];
+    var isBlack = true;
+    for (var i = 0; i < 15; i++) {
+        chessBoard[i] = [];
+        for (var j = 0; j < 15; j++) {
+            chessBoard[i][j] = 0;
+        }
+    }
+    function drawChess(i, j) {
+        ctx.beginPath();
+        ctx.arc(15 + i * 30, 15 + j * 30, 13, 0, 2 * Math.PI);
+        ctx.fillStyle = isBlack ? 'black' : 'white';
+        ctx.fill();
+    }
+    var over = false;//标志游戏是否结束，有一方赢了就表示结束
+    //赢法数组，用来记录所有可能的赢法方案，
+    var wins = [];
+    //赢法的统计数组，分别统计黑棋和白棋在上面所有赢法方案中已经完成了几颗棋子了
+    var blackWin = [], whiteWin = [];
+    //初始化枚举赢法的数组，为一个三维数组
+    for (var i = 0; i < 15; i++) {
+        wins[i] = [];
+        for (var j = 0; j < 15; j++) {
+            wins[i][j] = [];
+        }
+    }
+
+    var count = 0;
+
+    //枚举所有可能的五个棋子竖直排列的情况
+    for (var i = 0; i < 15; i++) {
+        for (var j = 0; j < 11; j++) {
+            for (var k = 0; k < 5; k++) {
+                wins[i][j + k][count] = true;
+            }
+            count++;
+        }
+    }
+
+    //枚举所有可能的五个棋子水平排列的情况
+    for (var i = 0; i < 15; i++) {
+        for (var j = 0; j < 11; j++) {
+            for (var k = 0; k < 5; k++) {
+                wins[j + k][i][count] = true;
+            }
+            count++;
+        }
+    }
+
+
+    //枚举所有可能的五个棋子反斜线排列的情况
+    for (var i = 0; i < 11; i++) {
+        for (var j = 0; j < 11; j++) {
+            for (var k = 0; k < 5; k++) {
+                wins[i + k][j + k][count] = true;
+            }
+            count++;
+        }
+    }
+
+    //枚举所有可能的五个棋子正斜线排列的情况
+    for (var i = 0; i < 11; i++) {
+        for (var j = 14; j > 3; j--) {
+            for (var k = 0; k < 5; k++) {
+                wins[i + k][j - k][count] = true;
+            }
+            count++;
+        }
+    }
+
+
+    //分别初始化黑白两棋子在某种赢法的情况下已经有的棋子为0
+    for (var i = 0; i < count; i++) {
+        blackWin[i] = 0;
+        whiteWin[i] = 0;
+    }
+</script>
+</body>
+</html>

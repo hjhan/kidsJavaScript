@@ -5,7 +5,7 @@
     <title>Snake</title>
 </head>
 <body>
-<canvas id="canvas" width="800" height="800"></canvas>
+<canvas id="canvas" width="800" height="700"></canvas>
 <script type="text/javascript">
     var colors = ['violet', 'red', 'blue', 'green', 'pink', 'yellow', 'orange', 'purple', 'black'];
     var canvas = document.getElementById("canvas");//取出画布
@@ -73,7 +73,7 @@
 
         draw() {  //画蛇的身体每块方块
             for (var i = 0; i < this.segments.length; i++) {
-                this.segments[i].drawSquare(colors[i % colors.length]);
+                this.segments[i].drawCircle(colors[i % colors.length]);
             }
         }
 

@@ -16,28 +16,50 @@
 </head>
 <body>
 
-<canvas id="myCanvas" width="480" height="320"></canvas>
+<canvas id="myCanvas" width="500" height="500"></canvas>
 
 <script>
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
 
+    function face() {
+        ctx.beginPath();
+        ctx.arc(75, 275, 50, 0, Math.PI * 2, true); // Outer circle
+        ctx.moveTo(110, 275);
+        ctx.arc(75, 275, 35, 0, Math.PI, false);  // Mouth (clockwise)
+        ctx.moveTo(65, 265);
+        ctx.arc(60, 265, 5, 0, Math.PI * 2, true);  // Left eye
+        ctx.moveTo(95, 265);
+        ctx.arc(90, 265, 5, 0, Math.PI * 2, true);  // Right eye
+        ctx.stroke();
+    }
+    face();
+    function triangle() {
+        ctx.beginPath();
+        ctx.moveTo(20, 300);
+        ctx.lineTo(20, 400);
+        ctx.lineTo(70, 400);
+        ctx.closePath();
+        ctx.stroke();
+    }
+    triangle();
     //Block for Snakes
     const blockSize = 20;
-    class Block{
-        constructor(col,row){
+    class Block {
+        constructor(col, row) {
             this.col = col;
             this.row = row;
         }
-        drawSquare(color){
+
+        drawSquare(color) {
             var x = this.col * blockSize;
             var y = this.row * blockSize;
             ctx.fillStyle = color;
-            ctx.fillRect(x,y,blockSize,blockSize);
+            ctx.fillRect(x, y, blockSize, blockSize);
         }
     }
 
-    var block = new Block(3,4);
+    var block = new Block(3, 4);
     block.drawSquare("LightBlue");
 
     ctx.beginPath();
