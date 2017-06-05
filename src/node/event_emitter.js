@@ -3,7 +3,7 @@ var EventEmitter = require('events').EventEmitter;
 
 class Dog extends EventEmitter {
     constructor(name) {
-        super();  //must call super
+        super();
         this.name = name;
     }
 }
