@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 var EventEmitter = require('events').EventEmitter;
 
-function Dog(name) {
-    this.name = name;
+class Dog extends EventEmitter {
+    constructor(name) {
+        super();  //must call super
+        this.name = name;
+    }
 }
-
 // Dog.prototype.__proto__ = EventEmitter.prototype;
 // 另一种写法
-Dog.prototype = Object.create(EventEmitter.prototype);
+// Dog.prototype = Object.create(EventEmitter.prototype);
 
 var simon = new Dog('Snoopy');
 
