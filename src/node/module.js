@@ -1,8 +1,19 @@
 #!/usr/bin/env node
 
-let name = 'steve'
+//redux middleware
+const logger = a => b => c => {
+    console.info('dispatching', c)
+}
 
+logger(1)(2)(3);
+
+let name = 'steve';
+
+console.log(require);
+console.log(this);
 function printName() {
+
+    console.log(this);
     console.log(name);
     console.log(module);
 }
